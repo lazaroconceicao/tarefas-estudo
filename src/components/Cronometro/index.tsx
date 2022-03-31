@@ -6,7 +6,7 @@ import { ITarefa } from "../../types/tarefa";
 import { useEffect, useState } from "react";
 
 interface Prpos {
-  selecionado: ITarefa | undefined;
+  selecionado: ITarefa | undefined
 }
 
 export default function Cronometro({ selecionado }: Prpos) {
@@ -21,9 +21,8 @@ export default function Cronometro({ selecionado }: Prpos) {
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o cronometro</p>
-      Tempo: {tempo}
       <div className={style.relogioWrapper}>
-        <Relogio />
+        <Relogio tempo={tempo} />
       </div>
       <Botao>Começar</Botao>
     </div>
