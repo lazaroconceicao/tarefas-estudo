@@ -6,10 +6,11 @@ import { ITarefa } from "../../types/tarefa";
 import { useEffect, useState } from "react";
 
 interface Prpos {
-  selecionado: ITarefa | undefined
+  selecionado: ITarefa | undefined,
+  finalizarTarefa: () => void
 }
 
-export default function Cronometro({ selecionado }: Prpos) {
+export default function Cronometro({ selecionado, finalizarTarefa }: Prpos) {
   const [tempo, setTempo] = useState<number>();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Cronometro({ selecionado }: Prpos) {
         setTempo(contador - 1);
         return regressiva(contador - 1);
       }
-
+      finalizarTarefa();
     }, 1000);
   }
 
