@@ -10,7 +10,7 @@ interface Prpos {
 }
 
 export default function Cronometro({ selecionado }: Prpos) {
-  const [tempo, setTempo] = useState<Number>();
+  const [tempo, setTempo] = useState<number>();
 
   useEffect(() => {
     if(selecionado?.tempo) {
@@ -18,13 +18,23 @@ export default function Cronometro({ selecionado }: Prpos) {
     }
   },[selecionado]);
 
+  function regressiva(contador: number = 0){
+    setTimeout(() => {
+      if(contador > 0) {
+        setTempo(contador - 1);
+        return regressiva(contador - 1);
+      }
+
+    }, 1000);
+  }
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o cronometro</p>
       <div className={style.relogioWrapper}>
         <Relogio tempo={tempo} />
       </div>
-      <Botao>Começar</Botao>
+      <Botao onClick={(() => regressiva(tempo))}>Começar</Botao>
     </div>
   );
 }
